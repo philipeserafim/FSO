@@ -120,18 +120,18 @@ void trataSinal(int s){
       printf("Certo\n");
     }else{
       printf("Erro\n");
+      kill(getppid(), SIGALRM);
     }
   }
 }
 
 int main(void){
-
-  while(1){
     signal(SIGUSR1, trataSinal);
     signal(SIGUSR2, trataSinal);
     signal(SIGINT, trataSinal);
     signal(SIGTERM, trataSinal);
     signal(SIGALRM, trataSinal);
+  while(1){
     pause();
   }
 }
